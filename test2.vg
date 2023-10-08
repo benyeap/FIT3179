@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 600,
+  "title": "Immigration to Australia in 2008 vs 1980",
+  "data": {
+    "url": "https://raw.githubusercontent.com/benyeap/FIT3179/main/Australia%20data.csv"
+  },
+
+  "params": [
+    {
+        "name": "dev_selection",
+        "bind": {
+        "input": "select",
+        "options": [
+        null,
+        "Developed regions",
+        "Developing regions"
+        ],
+        "labels":[
+            "Show All",
+            "Developed regions",
+            "Developing regions"
+        ],
+        "name": "Development Selection: "
+        }
+    }
+],
+
+"transform": [
+    {
+        "filter": "dev_selection == null || datum.DevName == dev_selection"
+    }
+],
+  
+  "encoding": {
+    "x": {
+    "field": "2008",
+    "type": "quantitative",
+    "title": "2008",
+    "scale": {"type": "log", "domain": [1, 70000]}
+    },
+    "y": {
+    "field": "1980",
+    "type": "quantitative",
+    "scale": {"type": "log", "domain": [1, 50000]}
+    },
+    "color": {
+    "field": "AreaName",
+    "type": "nominal"
+    }
+  },
+  
+  "layer": [
+    {
+      "mark": "circle",
+      "encoding": {
+        "color": {
+          "field": "AreaName",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Asia",
+              "Europe",
+              "Latin America and the Caribbean",
+              "Africa",
+              "Northern America",
+              "Oceania"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        },
+        "opacity": {"value": 0.6},
+        "tooltip": [
+          {"field": "OdName", "type": "nominal"},
+          {"field": "1980", "type": "quantitative", "format": ","},
+          {"field": "2008", "type": "quantitative", "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "OdName", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['OdName'] == 'China' || datum['OdName'] == 'India' || datum['OdName'] == 'New Zealand' || datum['OdName'] == 'United Kingdom of Great Britain and Northern Ireland' || datum['OdName'] == 'United States of America'",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "OdName", "type": "nominal"},
+          {"field": "1980", "type": "quantitative", "format": ","},
+          {"field": "2008", "type": "quantitative", "format": ","
+          }
+        ]
+      }
+    }
+  ]
+
+}
