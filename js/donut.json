@@ -2,7 +2,7 @@
       "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "width": 400,
         "height": 200,
-        "title": "Immigration to Australia in 2008 vs 1980",
+        "title": "Development status of immigration to Australia in 2008",
         "data": {
             "url": "https://raw.githubusercontent.com/benyeap/FIT3179/main/Australia%20data.csv"
         },
