@@ -9,7 +9,7 @@
 
         "mark": {"type": "arc", "innerRadius": 50},
         "encoding": {
-          "theta": {"field": "DevName", "type": "quantitative"},
+          "theta": {"field": "2008", "type": "quantitative"},
           "color": {"field": "DevName", "type": "nominal"}
         }
 
