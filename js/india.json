@@ -1,0 +1,22 @@
+{
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "width": 600,
+        "height": 400,
+        "title": "Immigration changes over time per country",
+        "data": {
+            "url": "https://raw.githubusercontent.com/benyeap/FIT3179/main/Australia%20data%20transposed.csv"
+        },
+       
+
+
+
+          
+        "mark": "line",
+        "encoding": {
+          "x": {"field": "Year", "type": "temporal"},
+          "y": {"field": "India", "type": "quantitative"}
+        }
+
+        
+
+}
