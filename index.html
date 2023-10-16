@@ -42,7 +42,27 @@
               </div>
             </div>            
                         <!-- end pure grid group -->
-        
+
+            <!-- pure grid group -->
+            <div class="pure-g">
+              <div class="pure-u-1-2">
+                <div class="description description-left">
+                  <h2>Which continents are most represented?</h2>
+                  <p>Australia gets immigrants from all over the world, however due to geographic proximity
+                      and the relative populations of certain continents, we see a much greater number of
+                      immigrants from certain parts of the world.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="pure-g">
+              <div class="pure-u-1-2">
+                <div id="vis9" class="vis-container"></div>
+              </div>
+            </div>  
+
+
+            
              <!-- pure grid group -->
              <div class="pure-g">
                 <div class="pure-u-1-2">
@@ -193,7 +213,8 @@
             var specVis5 = "js/india.json";
             var specVis6 = "js/uk.json";
             var specVis7 = "js/nz.json";
-            var specVis8 = "js/usa.json"
+            var specVis8 = "js/usa.json";
+              var specVis9 = "js/stackedbar.json"
         
             vegaEmbed('#vis1', specVis1, { "actions": false });
         
@@ -222,6 +243,10 @@
             }).catch(console.error);
 
             vegaEmbed('#vis8', specVis8, { "actions": false }).then(function (result) {
+              // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+            }).catch(console.error);
+              
+                          vegaEmbed('#vis9', specVis8, { "actions": false }).then(function (result) {
               // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
             }).catch(console.error);
         
