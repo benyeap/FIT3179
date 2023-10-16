@@ -1,16 +1,19 @@
 {
       "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-        "width": 400,
-        "height": 200,
+        "width": 600,
+        "height": 400,
         "title": "Development status of immigration to Australia in 2008",
         "data": {
             "url": "https://raw.githubusercontent.com/benyeap/FIT3179/main/Australia%20data.csv"
         },
 
-        "mark": {"type": "arc", "innerRadius": 50},
+        "mark": {"type": "arc", "innerRadius": 90},
         "encoding": {
-          "theta": {"field": "2008", "type": "quantitative"},
-          "color": {"field": "DevName", "type": "nominal"}
+          "theta": {"field": "DevName", "type": "nominal"},
+          "color": {"field": "DevName", "type": "nominal", "title":"Development status"},
+          "tooltip":[{"field":"DevName","title":" "},{"aggregate":"sum","field":"2008","title":"Immigrants in 2008:"}
+          
+          ]
         }
 
 }
