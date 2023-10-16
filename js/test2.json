@@ -4,7 +4,7 @@
   "height": 600,
   "title": "Immigration to Australia in 2008 vs 1980",
   "data": {
-    "url": "https://raw.githubusercontent.com/benyeap/FIT3179/main/Australia%20data.csv"
+    "url": "https://raw.githubusercontent.com/benyeap/FIT3179/main/Australia%20data%20portion.csv"
   },
 
   "params": [
@@ -28,26 +28,39 @@
 ],
 
 "transform": [
+    {"window":[{"op":"sum", "field":"2008", "as": "total2008"}]},
+    {"window":[{"op":"sum", "field":"1980", "as": "total1980"}]},
+   
+       {"filter": {"field":"2008", "gt": 0}},
+       {"filter":{"field":"1980", "gt": 0}},
+      {"filter": "dev_selection == null || datum.DevName == dev_selection"},
     {
-        "filter": "dev_selection == null || datum.DevName == dev_selection"
-    }
+"calculate": "datum[2008]/datum.total2008 * 100",
+"as": "portion2008"
+},
+    {
+"calculate": "datum[1980]/datum.total1980 * 100",
+"as": "portion1980"
+}
 ],
   
   "encoding": {
     "x": {
-    "field": "2008",
+    "field": "p09",
     "type": "quantitative",
-    "title": "2008",
-    "scale": {"type": "log", "domain": [1, 70000]}
+    "title": "Portion of total immigrants in 2008",
+    "scale": {"type": "log", "domain": [0.001, 40]}
     },
     "y": {
-    "field": "1980",
+    "field": "p80",
     "type": "quantitative",
-    "scale": {"type": "log", "domain": [1, 50000]}
+    "title":"Portion of total immigrants in 1980",
+    "scale": {"type": "log", "domain": [0.001, 40]}
     },
     "color": {
     "field": "AreaName",
-    "type": "nominal"
+    "type": "nominal",
+    "title":"Continent"
     }
   },
   
@@ -79,10 +92,11 @@
         },
         "opacity": {"value": 0.6},
         "tooltip": [
-          {"field": "OdName", "type": "nominal"},
-          {"field": "1980", "type": "quantitative", "format": ","},
-          {"field": "2008", "type": "quantitative", "format": ","
-          }
+          {"field": "OdName", "type": "nominal", "title":"Country:"},
+          {"field": "1980", "type": "quantitative", "title":"1980 immigrants:"},
+          {"field": "2008", "type": "quantitative","title":"2008 Immigrants:"},
+                    {"field": "portion2008", "type": "quantitative", "title":" Portion of 2008 Immigrants:"},
+          {"field": "portion1980", "type": "quantitative", "title":"Portion of 1980 Immigrants:"}
         ]
       }
     },
@@ -96,7 +110,7 @@
         "fontStyle": "italic"
       },
       "encoding": {
-        "text": {"field": "OdName", "type": "nominal"},
+        "text": {"field": "OdName", "type": "nominal","title":"Country"},
         "color": {"value": "black"},
         "opacity": {
           "condition": {
@@ -106,10 +120,11 @@
           "value": 0
         },
         "tooltip": [
-          {"field": "OdName", "type": "nominal"},
-          {"field": "1980", "type": "quantitative", "format": ","},
-          {"field": "2008", "type": "quantitative", "format": ","
-          }
+          {"field": "OdName", "type": "nominal","title":"Country:"},
+          {"field": "1980", "type": "quantitative", "title":"1980 immigrants:"},
+          {"field": "2008", "type": "quantitative", "title":"2008 Immigrants:"},
+          {"field": "p09", "type": "quantitative", "title":" Portion of 2008 Immigrants:"},
+          {"field": "p80", "type": "quantitative", "title":"Portion of 1980 Immigrants:"}
         ]
       }
     }
