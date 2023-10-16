@@ -1,0 +1,30 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+  "height": 600,
+  "title":"Continental Breakdown",
+  "data": {"url": "https://raw.githubusercontent.com/benyeap/FIT3179/main/Australia%20data.csv"},
+  "mark": "bar",
+  "encoding": {
+    "x": {
+            "field": "2008",
+      "type": "quantitative",
+      "title":"Immigrants in 2008"
+
+    },
+    "y": {
+      "field": "AreaName",
+      "type": "ordinal",
+      "title": "Continent"
+    },
+    "color": {
+      "field": "DevName",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Developing regions","Developed regions"],
+        "range": ["#FF0000", "#0000FF"]
+      },
+      "title": "Region names"
+    }
+  }
+}
