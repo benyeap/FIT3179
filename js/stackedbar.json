@@ -22,7 +22,7 @@
       "type": "nominal",
       "scale": {
         "domain": ["Developing regions","Developed regions"],
-        "range": ["#FF0000", "#0000FF"]
+        "range": ["#ff7f0e", "#1f77b4"]
       },
       "title": "Region names"
     }
